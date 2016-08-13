@@ -20,15 +20,15 @@ $('form').submit(function (evt) {
 
 			$.each(data.Search, function (i, movie) {
 
-				moviesHTML += '<li><div class="poster-wrap">';
+				moviesHTML += '<li><div class="poster-wrap"><a href="http://www.imdb.com/title/' + movie.imdbID + '">';
 
 				if (movie.Poster === "N/A") {
 
-					moviesHTML += '<i class="material-icons poster-placeholder">crop_original</i>';
+					moviesHTML += '<i class="material-icons poster-placeholder">crop_original</i></a></div>';
 
 				} else {
 
-					moviesHTML += '<img class="movie-poster" src="' + movie.Poster + '"></div>';	
+					moviesHTML += '<img class="movie-poster" src="' + movie.Poster + '"></a></div>';	
 
 				}
 
