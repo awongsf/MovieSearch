@@ -60,7 +60,8 @@ $('form').submit(function (evt) {
 		$("body > div:nth-child(2)").removeClass("main-content");
 
 		var omdbMovieOptions = {
-			i: imdbID
+			i: imdbID,
+			plot: "full"
 		};
 
 		function displayMovieInfo(data) {
@@ -74,7 +75,7 @@ $('form').submit(function (evt) {
 			$(".description-movie-title").text(descriptionMovieTitle);
 			$(".imdb-rating").text(imdbRating);
 			$(".plot-description").text(data.Plot);
-			$(".imdb-link > a").attr("href", imdbMoviePage);
+			$(".imdb-link").attr("href", imdbMoviePage);
 		}
 
 		$.getJSON(omdbAPI, omdbMovieOptions, displayMovieInfo)

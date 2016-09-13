@@ -212,16 +212,17 @@ button {
   background-color: turquoise;
   border-radius: 3px;
   color: white;
+  display: block;
   height: 40px;
   margin-top: 20px;
   padding: 8px 0;
   text-align: center;
   width: 150px;
 }
-
+/*
 .imdb-link > a {
   color: inherit;
-}
+}*/
 
 /* ================================= 
   Layout Styles
