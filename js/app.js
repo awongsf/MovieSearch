@@ -9,9 +9,10 @@ $('form').submit(function (evt) {
 		s: searchValue,
 		y: year
 	};
+	var imdbIDList = [];
 
 	function displayMovies(data) {
-
+		// DELETE WHEN COMPLETE
 		console.log(data);
 
 		var moviesHTML = '';
@@ -20,20 +21,21 @@ $('form').submit(function (evt) {
 
 			$.each(data.Search, function (i, movie) {
 
-				moviesHTML += '<li><div class="poster-wrap"><a href="http://www.imdb.com/title/' + movie.imdbID + '">';
+				moviesHTML += '<li><div class="poster-wrap">';
 
 				if (movie.Poster === "N/A") {
 
-					moviesHTML += '<i class="material-icons poster-placeholder">crop_original</i></a></div>';
+					moviesHTML += '<a href="#"><i class="material-icons poster-placeholder">crop_original</i></a></div>';
 
 				} else {
 
-					moviesHTML += '<img class="movie-poster" src="' + movie.Poster + '"></a></div>';	
+					moviesHTML += '<a href="#"><img class="movie-poster" src="' + movie.Poster + '"></a></div>';	
 
 				}
 
 				moviesHTML += '<span class="movie-title">' + movie.Title + '</span>';
 				moviesHTML += '<span class="movie-year">' + movie.Year + '</span></li>';
+				imdbIDList.push(movie.imdbID);
 			});
 
 		} else if (data.Response === "False") {
@@ -47,4 +49,43 @@ $('form').submit(function (evt) {
 	}
 
 	$.getJSON(omdbAPI, omdbOptions, displayMovies);
+
+	$(document).on("click", ".poster-wrap", function() {
+
+		var thisMovie = $(this).parent();
+		var index = $("li").index(thisMovie);
+		var imdbID = imdbIDList[index];
+
+		$(".main-content").load('description-page.html');
+		$("body > div:nth-child(2)").removeClass("main-content");
+
+		var omdbMovieOptions = {
+			i: imdbID
+		};
+
+		function displayMovieInfo(data) {
+			// DELETE WHEN COMPLETE
+			console.log(data);
+			var descriptionMovieTitle = data.Title + " " + "(" + data.Year + ")";
+			var imdbRating = "IMDB Rating: " + data.imdbRating;
+			var imdbMoviePage = "http://www.imdb.com/title/" + data.imdbID;
+
+			$(".movie-poster").attr("src", data.Poster);
+			$(".description-movie-title").text(descriptionMovieTitle);
+			$(".imdb-rating").text(imdbRating);
+			$(".plot-description").text(data.Plot);
+			$(".imdb-link > a").attr("href", imdbMoviePage);
+		}
+
+		$.getJSON(omdbAPI, omdbMovieOptions, displayMovieInfo)
+	});
+
+	$(document).on("click", ".search-results", function() {
+		$("body > div:nth-child(2)").addClass("main-content");
+		$(".description-page").remove();
+		var movieListHTML = '<ul id="movies" class="movie-list"></ul>';
+		$(".main-content").html(movieListHTML);
+		$.getJSON(omdbAPI, omdbOptions, displayMovies);
+	});
+
 });

@@ -148,6 +148,81 @@ button {
   margin: auto;
 }
 
+/* DESCRIPTION PAGE -------- */
+
+.description-page {
+  background-color: dimgray;
+  height: 200px;
+  overflow: visible;
+  position: relative;
+  top: -35px;
+  width: 100%;
+}
+
+.description-wrapper {
+  width: 90%;
+  max-width: 1025px;
+  margin: auto;
+}
+
+.search-results {
+  color: darkgrey;
+  display: block;
+  padding: 20px 0;
+}
+
+.description-wrapper > img {
+  border: solid white 10px;
+  display: inline-block;
+  width: 300px;
+}
+
+.description-content { 
+  display: inline-block;
+  padding-left: 40px;
+  vertical-align: top;
+  width: 70%;
+}
+
+.description-movie-title {
+  color: white;
+  display: block;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.imdb-rating {
+  color: darkgrey;
+  display: block;
+}
+
+.description-subtitle {
+  display: block;
+  font-weight: 800;
+  margin-top: 65px;
+}
+
+.plot-description {
+  color: darkgrey;
+  display: block;
+  margin-top: 10px;
+}
+
+.imdb-link {
+  background-color: turquoise;
+  border-radius: 3px;
+  color: white;
+  height: 40px;
+  margin-top: 20px;
+  padding: 8px 0;
+  text-align: center;
+  width: 150px;
+}
+
+.imdb-link > a {
+  color: inherit;
+}
+
 /* ================================= 
   Layout Styles
 ==================================== */
