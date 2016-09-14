@@ -12,8 +12,6 @@ $('form').submit(function (evt) {
 	var imdbIDList = [];
 
 	function displayMovies(data) {
-		// DELETE WHEN COMPLETE
-		console.log(data);
 
 		var moviesHTML = '';
 
@@ -55,23 +53,26 @@ $('form').submit(function (evt) {
 		var thisMovie = $(this).parent();
 		var index = $("li").index(thisMovie);
 		var imdbID = imdbIDList[index];
-
-		$(".main-content").load('description-page.html');
-		$("body > div:nth-child(2)").removeClass("main-content");
-
 		var omdbMovieOptions = {
 			i: imdbID,
 			plot: "full"
 		};
 
+		$(".main-content").load('description-page.html');
+		$("body > div:nth-child(2)").removeClass("main-content");
+
 		function displayMovieInfo(data) {
-			// DELETE WHEN COMPLETE
-			console.log(data);
+
 			var descriptionMovieTitle = data.Title + " " + "(" + data.Year + ")";
 			var imdbRating = "IMDB Rating: " + data.imdbRating;
 			var imdbMoviePage = "http://www.imdb.com/title/" + data.imdbID;
 
-			$(".movie-poster").attr("src", data.Poster);
+			if (data.Poster === "N/A") {
+				$(".description-movie-poster").css("background-color", "white");
+			} else {
+				$(".description-movie-poster").attr("src", data.Poster);	
+			}
+			
 			$(".description-movie-title").text(descriptionMovieTitle);
 			$(".imdb-rating").text(imdbRating);
 			$(".plot-description").text(data.Plot);
@@ -82,10 +83,13 @@ $('form').submit(function (evt) {
 	});
 
 	$(document).on("click", ".search-results", function() {
+
+		var movieListHTML = '<ul id="movies" class="movie-list"></ul>';
+
 		$("body > div:nth-child(2)").addClass("main-content");
 		$(".description-page").remove();
-		var movieListHTML = '<ul id="movies" class="movie-list"></ul>';
 		$(".main-content").html(movieListHTML);
+
 		$.getJSON(omdbAPI, omdbOptions, displayMovies);
 	});
 

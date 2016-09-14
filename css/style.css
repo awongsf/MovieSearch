@@ -151,7 +151,7 @@ button {
 /* DESCRIPTION PAGE -------- */
 
 .description-page {
-  background-color: dimgray;
+  background-color: #4E4B4A;
   height: 200px;
   overflow: visible;
   position: relative;
@@ -166,7 +166,7 @@ button {
 }
 
 .search-results {
-  color: darkgrey;
+  color: #B9B7B6;
   display: block;
   padding: 20px 0;
 }
@@ -188,11 +188,12 @@ button {
   color: white;
   display: block;
   font-size: 30px;
+  font-weight: 500;
   margin-top: 30px;
 }
 
 .imdb-rating {
-  color: darkgrey;
+  color: #B9B7B6;
   display: block;
 }
 
@@ -203,13 +204,13 @@ button {
 }
 
 .plot-description {
-  color: darkgrey;
+  color: #6A6968;
   display: block;
   margin-top: 10px;
 }
 
 .imdb-link {
-  background-color: turquoise;
+  background-color: #03D8A4;
   border-radius: 3px;
   color: white;
   display: block;
@@ -219,10 +220,6 @@ button {
   text-align: center;
   width: 150px;
 }
-/*
-.imdb-link > a {
-  color: inherit;
-}*/
 
 /* ================================= 
   Layout Styles
